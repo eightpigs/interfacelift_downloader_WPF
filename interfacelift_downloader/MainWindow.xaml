@@ -1,0 +1,69 @@
+﻿<Window x:Class="interfacelift_downloader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="interfacelift_downloader" Height="350" Width="525" TextOptions.TextFormattingMode="Display" 
+        TextOptions.TextRenderingMode="ClearType" TextOptions.TextHintingMode="Fixed"
+        BorderThickness="1" BorderBrush="#FFDADCDC"
+        WindowState="Normal" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" ResizeMode="NoResize">
+
+    <Grid>
+
+        <!-- 标题栏 -->
+        <Grid Background="#D6DBE9" Name="titlePanel" Height="30" VerticalAlignment="Top" MouseDown="titlePanel_MouseDown">
+
+            <!-- 图标 -->
+            <!--<Image Name="imgLogo" Margin="10,0,0,0" Width="20" Height="20" HorizontalAlignment="Left"></Image>-->
+            <Label Name="lblLogo" Margin="10,0,0,0" Width="20" Height="20" HorizontalAlignment="Left" Content="↓" FontSize="9"></Label>
+            <!-- 标题栏值 -->
+            <Label Name="lblTitle" Content="Interfacelift Downloader" Margin="40,0,0,0" FontSize="14" Padding="0,4,0,0" FontFamily="微软雅黑" MouseLeftButtonDown="lblTitle_MouseLeftButtonDown"></Label>
+
+            <!-- 最小化/关闭按钮 -->
+            <Button Name="btnMin" HorizontalAlignment="Right" Margin="0,0,31,0" Width="30" Height="30" BorderThickness="0" Background="#D6DBE9" Content="-" Click="btnMin_Click"></Button>
+
+            <Button Name="btnClose" HorizontalAlignment="Right" Margin="0,0,1,0" Width="30" Height="30" BorderThickness="0" Background="#D6DBE9" Content="×" Click="btnClose_Click" ></Button>
+        </Grid>
+
+        <!-- 错误提示 -->
+        <Label Name="lblError" Content="错误提示" Margin="0,40,0,0" HorizontalAlignment="Center" Foreground="Red" Visibility="Hidden"></Label>
+
+        <Grid Name="argsPanel">
+
+            <Grid VerticalAlignment="Top" Margin="40,80,0,0">
+                <Label Content="起始页码" HorizontalAlignment="Left" Foreground="#FF515353" Background="White" FontFamily="Segoe UI"/>
+                <TextBox Name="tbStartPageNo" Width="390" HorizontalAlignment="Left" Margin="60,0,0,0" BorderBrush="#CCC" Height="22" BorderThickness="0,0,0,1" ></TextBox>
+            </Grid>
+            <Grid VerticalAlignment="Top" Margin="40,120,0,0">
+                <Label Content="结束页码" HorizontalAlignment="Left" Foreground="#FF515353" Background="White" FontFamily="微软雅黑"/>
+                <TextBox Name="tbEndPageNo" Width="390" HorizontalAlignment="Left" Margin="60,0,0,0" BorderBrush="#CCC" Height="22" BorderThickness="0,0,0,1" Panel.ZIndex="1" ></TextBox>
+            </Grid>
+
+            <Grid VerticalAlignment="Top" Margin="40,160,0,0">
+                <Label Content="屏幕尺寸" HorizontalAlignment="Left" Foreground="#FF515353" Background="White" FontFamily="微软雅黑"/>
+                <ComboBox Margin="61,0,32,0" Width="390" Name="cbScreenSize" SelectionChanged="cbScreenSize_SelectionChanged"  />
+            </Grid>
+
+            <Grid VerticalAlignment="Top" Margin="40,200,0,0">
+                <Label Content="分 辨 率 " HorizontalAlignment="Left" Foreground="#FF515353" Background="White" FontFamily="微软雅黑"/>
+                <ComboBox Margin="61,0,32,0" Width="390" Name="cbResolution" SelectionChanged="cbResolution_SelectionChanged"/>
+            </Grid>
+
+            <Grid VerticalAlignment="Top" Margin="40,240,0,0">
+                <Label Content="存储位置" HorizontalAlignment="Left" Foreground="#FF515353" Background="White" FontFamily="微软雅黑"/>
+                <TextBox Name="tbFilePath" Width="300" HorizontalAlignment="Left" Margin="60,0,0,0" BorderBrush="#CCC" Height="22" BorderThickness="0,0,0,1" Panel.ZIndex="4" ></TextBox>
+                <Button Width="60" Name="btnChooseDir" Height="24" HorizontalAlignment="Right" Margin="0,0,42,0" Background="White" BorderBrush="#CCC" Foreground="#FF515353" Content="选择 ..." Panel.ZIndex="3"></Button>
+            </Grid>
+
+            <Button Name="btnSave" VerticalAlignment="Bottom" Width="100" Height="24" Margin="0,0,0,40" Background="White" BorderThickness="0" Foreground="#FF515353" Content="开始"  ></Button>
+
+        </Grid>
+
+        <Grid Name="previewPanel" Visibility="Hidden" Loaded="previewPanel_Loaded" Height="200" VerticalAlignment="Bottom" Margin="50,10,50,60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="126*"/>
+                <ColumnDefinition Width="397*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Name="tbConsole" AcceptsReturn="True" AcceptsTab="True" Foreground="Black" IsEnabled="False" BorderThickness="0,1,0,0" Background="#FFEAECEE" Grid.ColumnSpan="2"></TextBox>
+        </Grid>
+
+    </Grid>
+</Window>
