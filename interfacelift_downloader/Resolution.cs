@@ -19,16 +19,21 @@ namespace interfacelift_downloader
         /// </summary>
         public string Intro { get; set; }
         /// <summary>
-        /// 值
+        /// 搜索值
         /// </summary>
         public string Value { get; set; }
+        /// <summary>
+        /// 分辨率
+        /// </summary>
+        public string Px { get; set; }
 
         public Resolution() { }
-        public Resolution(string Name , string Intro, string Value )
+        public Resolution(string Name , string Intro, string Value, string Px )
         {
             this.Name = Name;
             this.Intro = Intro;
             this.Value = Value;
+            this.Px = Px;
         }
     }
 }

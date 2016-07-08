@@ -201,14 +201,7 @@ namespace interfacelift_downloader
         bool iponeRepeat = false;
 
         private void getImageUrl(object url){
-
-            this.Dispatcher.Invoke(new Action(() =>
-            {
-                tbConsole1.ScrollToEnd();
-                tbConsole2.ScrollToEnd();
-                tbConsole3.ScrollToEnd();
-            }));
-
+            
             this.Dispatcher.Invoke(new Action(() =>
             {
                 tbConsole1.Text += "\n---------------\n";
@@ -254,7 +247,7 @@ namespace interfacelift_downloader
                 fileUrl = item.Value;
                 if (iponeRepeat)
                 {
-                    fileUrl = item.Value.Replace("_1242x2208", "_2208x2208");
+                    item.Value = item.Value.Replace("_1242x2208", "_2208x2208");
                 }
                 // 获取文件名
                 string fileName = item.Value.Substring(item.Value.IndexOf("_") + 1);
@@ -264,29 +257,22 @@ namespace interfacelift_downloader
                 {
                     tbConsole1.Text += "\ndownloading";
                     tbConsole2.Text += "\n" + fileName;
-                    tbConsole3.Text += "\n ...";
                 }));
-
                 
                 // 下载文件
-                downResult = HttpUtils.downFile("http://interfacelift.com/" + fileUrl, path + "\\");
+                downResult = HttpUtils.downFile("http://interfacelift.com/" + item.Value, path + "\\");
 
                 // 操作组件
                 this.Dispatcher.Invoke(new Action(() =>
                 {
-                    tbConsole3.Text = tbConsole3.Text.Substring(0, tbConsole3.Text.Length - 3);
-                    
-                    if (downResult == 0)
-                        tbConsole3.Text += "failure";
-                    else if (downResult == 1)
-                        tbConsole3.Text += "successful";
+                    if(downResult == 0)
+                        tbConsole3.Text += "\nfailure";
+                    else if(downResult == 1)
+                        tbConsole3.Text += "\nsuccessful";
                     else
-                        tbConsole3.Text += "already exists";
-
-                    tbConsole1.ScrollToEnd();
-                    tbConsole2.ScrollToEnd();
-                    tbConsole3.ScrollToEnd();
+                        tbConsole3.Text += "\nalready exists";
                 }));
+                
             }
 
             // 下载完一页后换行
@@ -295,11 +281,7 @@ namespace interfacelift_downloader
                 tbConsole1.Text += "\n";
                 tbConsole2.Text += "\n";
                 tbConsole3.Text += "\n";
-                tbConsole1.ScrollToEnd();
-                tbConsole2.ScrollToEnd();
-                tbConsole3.ScrollToEnd();
             }));
-
 
             // 如果已经到结束页
             if (startPageNo++ == inputedEndPageNo)
@@ -309,11 +291,6 @@ namespace interfacelift_downloader
                     tbConsole1.Text += "\n---------------\n";
                     tbConsole2.Text += "\n\t已经将 " + inputedStartPageNo + " - " + inputedEndPageNo + " 的图片下载完成\n";
                     tbConsole3.Text += "\n---------------\n";
-
-                    tbConsole1.ScrollToEnd();
-                    tbConsole2.ScrollToEnd();
-                    tbConsole3.ScrollToEnd();
-
                 }));
                 thread.Abort();
             }
@@ -344,14 +321,13 @@ namespace interfacelift_downloader
             if (!check())
                 return;
 
-            path = tbFilePath.Text + @"\" + selectedScreenSize.Replace(":","_") + @"\" + selectedResulotion + @"\";
-            //path = path.Replace(":", "_").Replace("x","_");
             // 如果该目录不存在, 创建
-            DirectoryInfo dir = new DirectoryInfo(path);
+            DirectoryInfo dir = new DirectoryInfo(tbFilePath.Text);
             if (!dir.Exists)
             {
                 dir.Create();
             }
+            path = tbFilePath.Text;
             // 下载
             down();
 
@@ -466,21 +442,20 @@ namespace interfacelift_downloader
 
         private void tbConsole1_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            //tbConsole2.ScrollToVerticalOffset(tbConsole1.VerticalOffset);
-            //tbConsole3.ScrollToVerticalOffset(tbConsole1.VerticalOffset);
+            tbConsole2.ScrollToVerticalOffset(tbConsole1.VerticalOffset);
+            tbConsole3.ScrollToVerticalOffset(tbConsole1.VerticalOffset);
         }
 
         private void tbConsole2_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            //tbConsole1.ScrollToVerticalOffset(tbConsole2.VerticalOffset);
-            //tbConsole3.ScrollToVerticalOffset(tbConsole2.VerticalOffset);
+            tbConsole1.ScrollToVerticalOffset(tbConsole2.VerticalOffset);
+            tbConsole3.ScrollToVerticalOffset(tbConsole2.VerticalOffset);
         }
 
         private void tbConsole3_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            //tbConsole2.ScrollToVerticalOffset(tbConsole3.VerticalOffset);
-            //tbConsole1.ScrollToVerticalOffset(tbConsole3.VerticalOffset);
+            tbConsole2.ScrollToVerticalOffset(tbConsole3.VerticalOffset);
+            tbConsole1.ScrollToVerticalOffset(tbConsole3.VerticalOffset);
         }
-
     }
 }

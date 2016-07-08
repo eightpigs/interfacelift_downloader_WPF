@@ -110,13 +110,29 @@ namespace interfacelift_downloader
         /// </summary>
         /// <param name="url">文本Url</param>
         /// <param name="filePath">保存路径</param>
-        public static void downFile(string url, string filePath)
+        /// <returns>1 : 下载新文件完成    2:该文件已存在,跳过</returns>
+        public static int downFile(string url, string filePath)
         {
-            Console.WriteLine(url);
-            WebClient client = new WebClient();
-            client.Headers.Add("user-agent", DefaultUserAgent);
-            string fileName = url.Substring(url.IndexOf("_")+1);
-            client.DownloadFile(url, filePath + fileName);
+            try
+            {
+                Console.WriteLine(url);
+                WebClient client = new WebClient();
+                client.Headers.Add("user-agent", DefaultUserAgent);
+                string fileName = url.Substring(url.IndexOf("_") + 1);
+                fileName = fileName.Substring(0, fileName.IndexOf("_")) + url.Substring(url.LastIndexOf("."));
+
+                FileInfo file = new FileInfo(filePath + fileName);
+                if (!file.Exists)
+                {
+                    client.DownloadFile(url, filePath + fileName);
+                    return 1;
+                }
+                else
+                    return 2;
+            }catch
+            {
+                return 0;
+            }
         }
     }
 }

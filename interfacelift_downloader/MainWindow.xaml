@@ -4,7 +4,7 @@
         Title="interfacelift_downloader" Height="350" Width="525" TextOptions.TextFormattingMode="Display" 
         TextOptions.TextRenderingMode="ClearType" TextOptions.TextHintingMode="Fixed"
         BorderThickness="1" BorderBrush="#FFDADCDC"
-        WindowState="Normal" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" ResizeMode="NoResize">
+        WindowState="Normal" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" ResizeMode="NoResize" Loaded="Window_Loaded">
 
     <Grid>
 
@@ -56,14 +56,15 @@
             <Button Name="btnSave" VerticalAlignment="Bottom" Width="100" Height="24" Margin="0,0,0,40" Background="White" BorderThickness="0" Foreground="#FF515353" Content="开始"  ></Button>
 
         </Grid>
-
-        <Grid Name="previewPanel" Visibility="Hidden" Loaded="previewPanel_Loaded" Height="200" VerticalAlignment="Bottom" Margin="50,10,50,60">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="126*"/>
-                <ColumnDefinition Width="397*"/>
-            </Grid.ColumnDefinitions>
-            <TextBox Name="tbConsole" AcceptsReturn="True" AcceptsTab="True" Foreground="Black" IsEnabled="False" BorderThickness="0,1,0,0" Background="#FFEAECEE" Grid.ColumnSpan="2"></TextBox>
+        <Grid Name="previewPanel" Background="#364E6F" Visibility="Hidden" Margin="0,30,0,0">
+            <TextBox Name="tbConsole1" IsReadOnly="True" IsEnabled="False" AcceptsReturn="True" Width="100" Margin="15,0,0,0" AcceptsTab="True" Foreground="White" BorderThickness="0" Background="#364E6F" HorizontalAlignment="Left" PreviewMouseWheel="tbConsole1_PreviewMouseWheel" ></TextBox>
+            <TextBox Name="tbConsole2" IsReadOnly="True" IsEnabled="False" AcceptsReturn="True" Width="322" Margin="115,0,0,0" AcceptsTab="True" Foreground="White" BorderThickness="0" Background="#364E6F" HorizontalAlignment="Left" PreviewMouseWheel="tbConsole2_PreviewMouseWheel" ></TextBox>
+            <TextBox Name="tbConsole3" IsReadOnly="True" IsEnabled="False" AcceptsReturn="True" Width="100" Margin="425,0,0,0" AcceptsTab="True" Foreground="White" BorderThickness="0" Background="#364E6F" HorizontalAlignment="Left" PreviewMouseWheel="tbConsole3_PreviewMouseWheel" ></TextBox>
         </Grid>
+        
+        <!--<Grid Name="previewPanel" Background="#364E6F" Visibility="Hidden" Margin="0,30,0,0">
+            <TextBox Name="tbConsole" IsReadOnly="True" AcceptsReturn="True" Width="525" AcceptsTab="True" Foreground="White" BorderThickness="0" Background="#364E6F" HorizontalAlignment="Left"></TextBox>
+        </Grid>-->
 
     </Grid>
 </Window>

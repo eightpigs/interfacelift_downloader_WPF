@@ -1,6 +1,5 @@
 G:\dotNet\interfacelift_downloader\interfacelift_downloader\interfacelift_downloader\bin\Debug\interfacelift_downloader.exe
 G:\dotNet\interfacelift_downloader\interfacelift_downloader\interfacelift_downloader\bin\Debug\interfacelift_downloader.pdb
-G:\dotNet\interfacelift_downloader\interfacelift_downloader\interfacelift_downloader\obj\Debug\interfacelift_downloader.csprojResolveAssemblyReference.cache
 G:\dotNet\interfacelift_downloader\interfacelift_downloader\interfacelift_downloader\obj\Debug\MainWindow.baml
 G:\dotNet\interfacelift_downloader\interfacelift_downloader\interfacelift_downloader\obj\Debug\MainWindow.g.cs
 G:\dotNet\interfacelift_downloader\interfacelift_downloader\interfacelift_downloader\obj\Debug\App.g.cs
